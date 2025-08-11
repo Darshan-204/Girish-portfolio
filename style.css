@@ -434,6 +434,9 @@ body:not(.light-mode) .vertical-navbar a:hover {
         padding: 10px 10px;
         font-size: 0.95em;
     }
+    header {
+        margin-top: 60px;
+    }
 }
 
 .footer {
