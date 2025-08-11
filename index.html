@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIRISH N S - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="vertical-navbar">
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>GIRISH N S</h1>
+            <div class="contact">
+                <span>📞 +91 8095436160</span>
+                <span>📍 Bengaluru, Karnataka</span>
+                <span>✉ girishns0711@gmail.com</span>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+        </header>
+        <section class="about" id="about">
+            <h2>About Me</h2>
+            <p>Aspiring Computer Science Engineer with a strong ability to apply core principles to solve technical challenges, seeking opportunities to deepen expertise in software tools and technologies. Quick to learn, adaptable and eager to contribute to innovative projects in a collaborative team environment.</p>
+        </section>
+        <div class="main-content">
+            <section class="education" id="education">
+                <h2>Education</h2>
+                <ul>
+                    <li><strong>Bachelor of Engineering in Computer Science and Engineering</strong> (2022-2026)<br>RNS Institute of Technology, Bengaluru<br>CGPA: 8.4</li>
+                    <li><strong>Pre-University Of College (PUC) in PCMB</strong> (2022-2026)<br>VidhyaDhama PU College, Bengaluru<br>Percentage: 88%</li>
+                    <li><strong>School</strong> (2010-2020)<br>Theresa Public High School, Bengaluru<br>Percentage: 90.24%</li>
+                </ul>
+            </section>
+            <section class="projects" id="projects">
+                <h2>Projects</h2>
+                <div class="project">
+                    <h3>House Price Prediction</h3>
+                    <p>This project implements Multiple Linear Regression using NumPy from scratch, without using high-level ML libraries. The model is trained using Gradient Descent and predicts house prices based on various features. It includes manual feature scaling, bias handling, custom training loops, and evaluation plots.</p>
+                    <a href="https://github.com/girish-n-s/Machine-learning-practice-.git" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project">
+                    <h3>Text File Compression Using Huffman Code</h3>
+                    <p>Developed a file compression tool using Huffman coding in C++. Reduced file sizes efficiently by converting text into binary format. Improved storage efficiency with custom encoding and decoding mechanisms.</p>
+                    <a href="https://github.com/girish-n-s/file-compression-.git" target="_blank">View on GitHub</a>
+                </div>
+            </section>
+        </div>
+        <section class="skills" id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li><strong>Technical Skills:</strong> C, C++, Python (NumPy, Matplotlib, Pandas)</li>
+                <li>Leadership, Analytics, Teamwork, Communication, Problem Solving, Collaboration</li>
+            </ul>
+        </section>
+        <section class="certificates" id="certificates">
+            <h2>Course And Certificates</h2>
+            <ul>
+                <li><strong>Artificial Intelligence course</strong> (in progress) - Samsung Innovation Campus (SIC)</li>
+                <li><strong>Data structures and algorithm in python</strong> - Infosys Springboard</li>
+            </ul>
+        </section>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="copyright">© 2025 Girish N S</span>
+            <a href="https://drive.google.com/uc?export=download&id=11VK7CSF3QlYHVcVg2-GvG7u8tCfU-5BD" target="_blank" class="download-resume">
+                Resume <span class="download-icon">&#x2193;</span>
+            </a>
+        </div>
+    </footer>
+    <script>
+const toggleBtn = document.getElementById('theme-toggle');
+const body = document.body;
+const darkIcon = '🌙';
+const lightIcon = '☀';
+function setTheme(theme) {
+    if (theme === 'light') {
+        body.classList.add('light-mode');
+        toggleBtn.textContent = darkIcon;
+    } else {
+        body.classList.remove('light-mode');
+        toggleBtn.textContent = lightIcon;
+    }
+    localStorage.setItem('theme', theme);
+}
+toggleBtn.onclick = () => {
+    const isLight = body.classList.contains('light-mode');
+    setTheme(isLight ? 'dark' : 'light');
+};
+window.onload = () => {
+    const saved = localStorage.getItem('theme');
+    setTheme(saved === 'light' ? 'light' : 'dark');
+};
+
+// Section reveal on scroll
+const sections = document.querySelectorAll('section');
+const revealSections = () => {
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      sec.classList.add('visible');
+    } else {
+      sec.classList.remove('visible');
+    }
+  });
+};
+window.addEventListener('scroll', revealSections);
+window.addEventListener('load', revealSections);
+
+// Project card reveal on scroll
+const projects = document.querySelectorAll('.project');
+const revealOnScroll = () => {
+  projects.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      card.classList.add('visible');
+    } else {
+      card.classList.remove('visible');
+    }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Interactive hover effect
+projects.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.classList.add('active');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.classList.remove('active');
+  });
+});
+
+// Highlight active navbar link on scroll
+const navLinks = document.querySelectorAll('.vertical-navbar a');
+const sectionsAll = ['about', 'education', 'projects', 'skills', 'certificates'].map(id => document.getElementById(id));
+function highlightNav() {
+  let index = sectionsAll.length - 1;
+  for (let i = 0; i < sectionsAll.length; i++) {
+    if (window.scrollY + 100 < sectionsAll[i].offsetTop) {
+      index = i - 1;
+      break;
+    }
+  }
+  navLinks.forEach(link => link.classList.remove('active'));
+  if (index >= 0) navLinks[index].classList.add('active');
+}
+window.addEventListener('scroll', highlightNav);
+window.addEventListener('load', highlightNav);
+</script>
+</body>
+</html>
